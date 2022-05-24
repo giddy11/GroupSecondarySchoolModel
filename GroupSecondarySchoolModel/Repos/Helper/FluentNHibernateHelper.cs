@@ -38,5 +38,10 @@ namespace GroupSecondarySchoolModel.Repos.Helper
         {
             return SessionFactory.OpenSession();
         }
+
+        public static ISession CloseSession()
+        {
+            return null;
+        }
     }
 }

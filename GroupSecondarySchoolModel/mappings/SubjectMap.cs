@@ -8,12 +8,14 @@ using System.Threading.Tasks;
 
 namespace GroupSecondarySchoolModel.mappings
 {
-    public class SubjectMap : EntityBaseMap<Subject>
+    public class SubjectMap : ClassMap<Subject>
     {
         public SubjectMap()
         {
+            Id(x => x.Id);
             Map(x => x.Name);
             HasManyToMany(x => x.Teachers);
+            HasManyToMany(x => x.Students);
         }
     }
 }
