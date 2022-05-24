@@ -20,6 +20,36 @@ namespace GroupSecondarySchoolModel.Repos.DataBaseManager
             }
         }
 
+        public static void AddClasses(ClassRoom classRoom)
+        {
+            using (var session = FluentNHibernateHelper.OpenSession())
+            {
+                using var transaction = session.BeginTransaction();
+                session.Save(classRoom);
+                transaction.Commit();
+            }
+        }
+
+        public static void AddPrincipal(Principal principal)
+        {
+            using (var session = FluentNHibernateHelper.OpenSession())
+            {
+                using var transaction = session.BeginTransaction();
+                session.Save(principal);
+                transaction.Commit();
+            }
+        }
+
+        public static void AddStudents(Student student)
+        {
+            using (var session = FluentNHibernateHelper.OpenSession())
+            {
+                using var transaction = session.BeginTransaction();
+                session.Save(student);
+                transaction.Commit();
+            }
+        }
+
         public static void DeleteSchool(School school)
         {
             using (var session = FluentNHibernateHelper.OpenSession())
