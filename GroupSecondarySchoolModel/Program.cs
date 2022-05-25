@@ -9,112 +9,103 @@ Console.WriteLine("Object Relatonal Mapper Class");
 
 FluentNHibernateHelper.OpenSession();
 
+var school1 = new School();
+var principal = new Principal();
+var students = new List<Student>();
+var classRooms = new List<ClassRoom>();
+var teachers = new List<Teacher>();
+var subjects = new List<Subject>();
+
 #region Add School
-var school1 = new School {Name = "Tarepet Secondary School", Address = "Kpansia, Bayelsa State"};
+
+school1 = new School(0, "Tarepet Secondary School", "Kpansia Bayelsa", principal);
 
 DataBaseManager<School>.AddItem(school1);
 #endregion
 
+#region Add ClassRooms
+var classes1 = new ClassRoom(0, "Junior Secondary School One", school1);
+var classes2 = new ClassRoom(1, "Junior Secondary School Two", school1);
+var classes3 = new ClassRoom(2, "Junior Secondary School Three", school1);
+var classes4 = new ClassRoom(3, "Senior Secondary School One", school1);
+var classes5 = new ClassRoom(4, "Senior Secondary School Two", school1);
+var classes6 = new ClassRoom(5, "Senior Secondary School Three", school1);
+
+classRooms = new List<ClassRoom>() { classes1, classes2, classes3, classes4, classes5, classes6 };
+foreach (var item in classRooms)
+{
+    DataBaseManager<ClassRoom>.AddItem(item);
+}
+#endregion
+
+#region Add Teachers
+var teacher1 = new Teacher(0, "Mr.Abraham", school1);
+var teacher2 = new Teacher(1, "Mr.Murphy", school1);
+var teacher3 = new Teacher(2, "Mr.Ifeanyi", school1);
+var teacher4 = new Teacher(3, "Mr.Giddy", school1);
+var teacher5 = new Teacher(4, "Miss Felicia", school1);
+var teacher6 = new Teacher(5, "Mr.David", school1);
+
+teachers = new List<Teacher>() { teacher1, teacher2, teacher3, teacher4, teacher5, teacher6 };
+foreach (var item in teachers)
+{
+    DataBaseManager<Teacher>.AddItem(item);
+}
+#endregion
+
+
 #region Add Principal
 
-var principal = new Principal { FullName = "Mr Ebuka", School = school1 };
+principal = new Principal(0, "Mr Ebuka", school1);
 
 DataBaseManager<Principal>.AddItem(principal);
 
 #endregion
 
-#region Add Teachers
-
-var teacher1 = new Teacher { FullName = "Mr.Abraham", School = school1};
-var teacher2 = new Teacher { FullName = "Mr.Murphy", School = school1 };
-var teacher3 = new Teacher { FullName = "Mr.Ifeanyi", School = school1 };
-var teacher4 = new Teacher { FullName = "Mr.Giddy", School = school1 };
-var teacher5 = new Teacher { FullName = "Miss Felicia", School = school1 };
-var teacher6 = new Teacher { FullName = "Mr.David", School = school1 };
-
-DataBaseManager<Teacher>.AddItem(teacher1);
-DataBaseManager<Teacher>.AddItem(teacher2);
-DataBaseManager<Teacher>.AddItem(teacher3);
-DataBaseManager<Teacher>.AddItem(teacher4);
-DataBaseManager<Teacher>.AddItem(teacher5);
-DataBaseManager<Teacher>.AddItem(teacher6);
-
-#endregion
-
-#region Add ClassRooms
-var Classes1 = new ClassRoom { Name = "Junior Secondary School One", School = school1 };
-var Classes2 = new ClassRoom { Name = "Junior Secondary School Two", School = school1 };
-var Classes3 = new ClassRoom { Name = "Junior Secondary School Three", School = school1 };
-var Classes4 = new ClassRoom { Name = "Senior Secondary School One", School = school1 };
-var Classes5 = new ClassRoom { Name = "Senior Secondary School Two", School = school1 };
-var Classes6 = new ClassRoom { Name = "Senior Secondary School Three", School = school1 };
-
-DataBaseManager<ClassRoom>.AddItem(Classes1);
-DataBaseManager<ClassRoom>.AddItem(Classes2);
-DataBaseManager<ClassRoom>.AddItem(Classes3);
-DataBaseManager<ClassRoom>.AddItem(Classes4);
-DataBaseManager<ClassRoom>.AddItem(Classes5);
-DataBaseManager<ClassRoom>.AddItem(Classes6);
-
-#endregion
 
 #region Add Students
+var student1 = new Student (0, "Caroline Ogbara", school1, classes1);
+var student2 = new Student (1, "Gideon Edoghotu", school1, classes1);
 
-var student1 = new Student { FullName = "Caroline Ogbara", Class = Classes1, School = school1 };
-var student2 = new Student { FullName = "Gideon Edoghotu", Class = Classes1, School = school1 };
+var student3 = new Student (2, "Iruoma Dear", school1, classes2);
+var student4 = new Student (3, "Hyscient Boy", school1, classes2);
 
-var student3 = new Student { FullName = "Iruoma Dear", Class = Classes2, School = school1 };
-var student4 = new Student { FullName = "Hyscient Boy", Class = Classes2, School = school1 };
+var student5 = new Student(4, "Samuel Ogbole", school1, classes3);
+var student6 = new Student(5, "Osborn Guy", school1, classes3);
 
-var student5 = new Student { FullName = "Samuel Ogbole", Class = Classes3, School = school1 };
-var student6 = new Student { FullName = "Osborn Guy", Class = Classes3, School = school1 };
+var student7 = new Student(6, "Dozie Gift", school1, classes4);
+var student8 = new Student(7, "Victory Chiefson", school1, classes4);
 
-var student7 = new Student { FullName = "Dozie Gift", Class = Classes4, School = school1 };
-var student8 = new Student { FullName = "Victory Chiefson", Class = Classes4, School = school1 };
+var student9 = new Student(8, "Chuks Ebe", school1, classes5);
+var student10 = new Student(9, "Dozie Eli", school1, classes5);
 
-var student9 = new Student { FullName = "Chuks Ebe", Class = Classes5, School = school1 };
-var student10 = new Student { FullName = "Dozie Eli", Class = Classes5, School = school1 };
+var student11 = new Student(10, "Caro Ben", school1, classes6);
+var student12 = new Student(11, "Favour Levi", school1, classes6);
 
-var student11 = new Student { FullName = "Caro Ben", Class = Classes6, School = school1 };
-var student12 = new Student { FullName = "Favour Levi", Class = Classes6, School = school1 };
+students = new List<Student>() { student1, student2, student3, student4, student5, student6, student7, student8, student9, student10, student11, student12 };
 
-
-DataBaseManager<Student>.AddItem(student1);
-DataBaseManager<Student>.AddItem(student2);
-DataBaseManager<Student>.AddItem(student3);
-DataBaseManager<Student>.AddItem(student4);
-DataBaseManager<Student>.AddItem(student5);
-DataBaseManager<Student>.AddItem(student6);
-DataBaseManager<Student>.AddItem(student7);
-DataBaseManager<Student>.AddItem(student8);
-DataBaseManager<Student>.AddItem(student9);
-DataBaseManager<Student>.AddItem(student10);
-DataBaseManager<Student>.AddItem(student11);
-DataBaseManager<Student>.AddItem(student12);
-
+foreach (var item in students)
+{
+    DataBaseManager<Student>.AddItem(item);
+}
 #endregion
 
 #region Add Subjects
+var subject1 = new Subject(0, "Mathematics");
+var subject2 = new Subject(1, "English");
+var subject3 = new Subject(2, "Biology");
+var subject4 = new Subject(3, "Chemistry");
+var subject5 = new Subject(4, "Physics");
+var subject6 = new Subject(5, "Business Study");
+var subject7 = new Subject(6, "C.R.K");
+var subject8 = new Subject(7, "Health Education");
 
-var subject1 = new Subject { Name = "Mathematics", };
-var subject2 = new Subject { Name = "English"};
-var subject3 = new Subject { Name = "Biology" };
-var subject4 = new Subject { Name = "Chemistry" };
-var subject5 = new Subject { Name = "Physics" };
-var subject6 = new Subject { Name = "Business Study" };
-var subject7 = new Subject { Name = "C.R.K"};
-var subject8 = new Subject { Name = "Health Education" };
+subjects = new List<Subject>() { subject1, subject2, subject3, subject4, subject5, subject6, subject7, subject8 };
 
-DataBaseManager<Subject>.AddItem(subject1);
-DataBaseManager<Subject>.AddItem(subject2);
-DataBaseManager<Subject>.AddItem(subject3);
-DataBaseManager<Subject>.AddItem(subject4);
-DataBaseManager<Subject>.AddItem(subject5);
-DataBaseManager<Subject>.AddItem(subject6);
-DataBaseManager<Subject>.AddItem(subject7);
-DataBaseManager<Subject>.AddItem(subject8);
-
-
+foreach (var item in subjects)
+{
+    DataBaseManager<Subject>.AddItem(item);
+}
 #endregion
 
 

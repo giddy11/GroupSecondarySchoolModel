@@ -1,5 +1,4 @@
-﻿using GroupSecondarySchoolModel.Repos.Entity;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +9,20 @@ namespace GroupSecondarySchoolModel.models
     //a school has a name,address, list of teachers and students
     public class School
     {
+        public School()
+        {
+
+        }
+
+        public School(int id, string name, string address, Principal principal)
+        {
+            Id = id;
+            Name = name;
+            Address = address;
+            Principal = principal;
+            //Teachers = teachers;
+            //Students = students;
+        }
         public virtual int Id { get; set; }
         public virtual string Name { get; set; }
         public virtual string Address { get; set; }
